@@ -1,5 +1,6 @@
 import VideoList from "./VideoList.js";
-
+import VideoPlayer from "./VideoPlayer.js"
+//pass props into the Apps function
 var App = (props) => (
   <div>
     <nav className="navbar">
@@ -9,10 +10,10 @@ var App = (props) => (
     </nav>
     <div className="row">
       <div className="col-md-7">
-        <div><h5><em>videoPlayer</em> view goes here</h5></div>
+        <div><h5><em><VideoPlayer videos={props.videos}/></em></h5></div>
       </div>
       <div className="col-md-5">
-        <div><h5><em><VideoList videos={props.videos}/></em> view goes here</h5></div>
+        <div><h5><em><VideoList videos={props.videos}/></em></h5></div>
       </div>
     </div>
   </div>
