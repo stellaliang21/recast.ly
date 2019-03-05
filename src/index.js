@@ -6,6 +6,6 @@ import App from './components/App.js';
 // import Search from "./Search";
 import exampleVideoData from './data/exampleVideoData.js';
 
-ReactDOM.render(<App props={exampleVideoData}/>, document.getElementById('app'));
+ReactDOM.render(<App videos={exampleVideoData}/>, document.getElementById('app'));
 
 //'helllo'
