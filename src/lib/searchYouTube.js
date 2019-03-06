@@ -3,10 +3,13 @@ import YOUTUBE_API_KEY from "../config/youtube.js";
 const YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/search";
 
 var searchYouTube = (options, callback) => {
+
   $.ajax({
-    // This is the url you should use to communicate with the parse API server.
+
     url: YOUTUBE_API_URL,
+
     type: 'GET',
+
     data: {
       part: 'snippet',
       type: 'video',
@@ -15,15 +18,20 @@ var searchYouTube = (options, callback) => {
       q: options.query,
       maxResults: options.max
     },
+
     contentType: 'application/json',
+
     success: function (data) {
       console.log('Success!', data);
       callback(data.items);
     },
+
     error: function (data) {
       console.error('FAILED!', data);
     }
+
   });
+
 };
 
 export default searchYouTube;

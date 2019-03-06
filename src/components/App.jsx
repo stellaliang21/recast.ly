@@ -2,19 +2,38 @@ import VideoList from "./VideoList.js";
 import VideoPlayer from "./VideoPlayer.js";
 import Search from "./Search.js";
 import exampleVideoData from "../data/exampleVideoData.js";
+import searchYouTube from "../lib/searchYouTube.js";
+import YOUTUBE_API_KEY from "../config/youtube.js";
 //pass props into the Apps function
 class App extends React.Component {
   
   constructor(props) {
+
     super(props);
+
     this.state = {
-      nowPlaying: exampleVideoData[0]
+      nowPlaying: exampleVideoData[0],
+      searchResults: exampleVideoData
     };
+
+    searchYouTube({
+      key: YOUTUBE_API_KEY,
+      query: 'mukbang',
+      max: 10
+    }, this.initialize.bind(this));
+
   }
 
   changePlaying(props) {
     this.setState({
       nowPlaying: props.video
+    });
+  }
+
+  initialize (results) {
+    this.setState({
+      nowPlaying: results[0],
+      searchResults: results
     });
   }
 
@@ -31,7 +50,7 @@ class App extends React.Component {
             <div><h5><em><VideoPlayer video={this.state.nowPlaying}/></em></h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><em><VideoList videos={exampleVideoData} handler={this.changePlaying.bind(this)}/></em></h5></div>
+            <div><h5><em><VideoList videos={this.state.searchResults} handler={this.changePlaying.bind(this)}/></em></h5></div>
           </div>
         </div>
       </div>
