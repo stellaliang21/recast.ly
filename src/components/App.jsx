@@ -18,10 +18,15 @@ class App extends React.Component {
 
     searchYouTube({
       key: YOUTUBE_API_KEY,
-      query: 'mukbang',
+      query: 'react tutorial',
       max: 10
     }, this.initialize.bind(this));
 
+    this.searchbar = '';
+
+    this.liveSearch = this.liveSearch.bind(this);
+
+    this.sendQueryDebounced = _.debounce(this.sendQuery, 500);
   }
 
   changePlaying(props) {
@@ -37,12 +42,25 @@ class App extends React.Component {
     });
   }
 
+  liveSearch(e) {
+    this.searchbar = e.target.value;
+    this.sendQueryDebounced(this.searchbar);
+  }
+
+  sendQuery(query) {
+    searchYouTube({
+      key: YOUTUBE_API_KEY,
+      query: query,
+      max: 10
+    }, this.initialize.bind(this));
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em><Search/></em></h5></div>
+            <div><h5><em><Search handler={this.liveSearch}/></em></h5></div>
           </div>
         </nav>
         <div className="row">
