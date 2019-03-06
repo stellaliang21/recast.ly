@@ -1,6 +1,6 @@
 import VideoList from "./VideoList.js";
 import VideoPlayer from "./VideoPlayer.js";
-import Search from "./Search.js"
+import Search from "./Search.js";
 import exampleVideoData from "../data/exampleVideoData.js";
 //pass props into the Apps function
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       nowPlaying: exampleVideoData[0]
-    }
+    };
   }
 
   changePlaying(props) {
@@ -36,7 +36,7 @@ class App extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 
 }
 // In the ES6 spec, files are "modules" and do not share a top-level scope
